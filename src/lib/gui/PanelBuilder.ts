@@ -89,20 +89,24 @@ export class PanelBuilder {
     }
     this._contentElement = content;
 
+    // Point clouds list
+    content.appendChild(this._buildPointCloudsList());
+
     // File input section
     content.appendChild(this._buildFileSection());
 
     // Styling section
     content.appendChild(this._buildStylingSection());
 
-    // Point clouds list
-    content.appendChild(this._buildPointCloudsList());
+
 
     // Cross-section panel (if callback provided)
     const crossSectionPanel = this._buildCrossSectionSection();
     if (crossSectionPanel) {
       content.appendChild(crossSectionPanel);
     }
+
+
 
     // Loading indicator
     content.appendChild(this._buildLoadingIndicator());
@@ -340,7 +344,7 @@ export class PanelBuilder {
     // Section header
     const header = document.createElement('div');
     header.className = 'lidar-control-section-header';
-    header.textContent = 'Styling';
+    header.textContent = 'Estilo';
     section.appendChild(header);
 
     // Color scheme selector
@@ -349,16 +353,16 @@ export class PanelBuilder {
 
     const colorLabel = document.createElement('label');
     colorLabel.className = 'lidar-control-label';
-    colorLabel.textContent = 'Color By';
+    colorLabel.textContent = 'Color por';
     colorGroup.appendChild(colorLabel);
 
     const colorSelect = document.createElement('select');
     colorSelect.className = 'lidar-control-select';
     colorSelect.innerHTML = `
-      <option value="elevation">Elevation</option>
-      <option value="intensity">Intensity</option>
-      <option value="classification">Classification</option>
-      <option value="rgb">RGB (if available)</option>
+      <option value="elevation">Elevación</option>
+      <option value="intensity">Intensidad</option>
+      <option value="classification">Clasificación</option>
+      <option value="rgb">RGB</option>
     `;
     colorSelect.value = typeof this._state.colorScheme === 'string' ? this._state.colorScheme : 'elevation';
     colorSelect.addEventListener('change', () => {
@@ -384,7 +388,7 @@ export class PanelBuilder {
 
     // Point size slider
     this._pointSizeSlider = new RangeSlider({
-      label: 'Point Size',
+      label: 'Tamaño de punto',
       min: 1,
       max: 10,
       step: 0.5,
@@ -395,7 +399,7 @@ export class PanelBuilder {
 
     // Opacity slider
     this._opacitySlider = new RangeSlider({
-      label: 'Opacity',
+      label: 'Opacidad',
       min: 0,
       max: 1,
       step: 0.05,
@@ -442,7 +446,7 @@ export class PanelBuilder {
     label.htmlFor = 'lidar-elevation-filter-checkbox';
     label.style.display = 'inline';
     label.style.cursor = 'pointer';
-    label.textContent = 'Elevation Filter';
+    label.textContent = 'Filtro de elevación';
 
     labelRow.appendChild(checkbox);
     labelRow.appendChild(label);
@@ -458,7 +462,7 @@ export class PanelBuilder {
 
     // Create dual range slider
     this._elevationSlider = new DualRangeSlider({
-      label: 'Range (m)',
+      label: 'Rango (m)',
       min: bounds.min,
       max: bounds.max,
       step: 1,
@@ -589,7 +593,7 @@ export class PanelBuilder {
     label.htmlFor = 'lidar-terrain-checkbox';
     label.style.display = 'inline';
     label.style.cursor = 'pointer';
-    label.textContent = '3D Terrain';
+    label.textContent = 'Terreno 3D';
 
     labelRow.appendChild(checkbox);
     labelRow.appendChild(label);
@@ -659,7 +663,7 @@ export class PanelBuilder {
 
     const label = document.createElement('label');
     label.className = 'lidar-control-label';
-    label.textContent = 'Colormap';
+    label.textContent = 'Mapa de color';
     group.appendChild(label);
 
     // Select dropdown
@@ -831,7 +835,7 @@ export class PanelBuilder {
     label.htmlFor = 'lidar-pickable-checkbox';
     label.style.display = 'inline';
     label.style.cursor = 'pointer';
-    label.textContent = 'Enable point picking';
+    label.textContent = 'Habilitar selección de puntos';
 
     checkbox.addEventListener('change', () => {
       this._callbacks.onPickableChange(checkbox.checked);
@@ -853,7 +857,7 @@ export class PanelBuilder {
 
     const header = document.createElement('div');
     header.className = 'lidar-control-section-header';
-    header.textContent = 'Loaded Point Clouds';
+    header.textContent = 'Nubes de puntos cargadas';
     section.appendChild(header);
 
     const list = document.createElement('div');
@@ -877,7 +881,7 @@ export class PanelBuilder {
     if (this._state.pointClouds.length === 0) {
       const empty = document.createElement('div');
       empty.className = 'lidar-pointclouds-empty';
-      empty.textContent = 'No point clouds loaded';
+      empty.textContent = 'No hay nubes de puntos cargadas';
       this._pointCloudsList.appendChild(empty);
       return;
     }
@@ -904,7 +908,7 @@ export class PanelBuilder {
 
     const details = document.createElement('div');
     details.className = 'lidar-pointcloud-details';
-    details.textContent = `${formatNumber(pc.pointCount)} points`;
+    details.textContent = `${formatNumber(pc.pointCount)} puntos`;
 
     info.appendChild(name);
     info.appendChild(details);
@@ -917,8 +921,13 @@ export class PanelBuilder {
       const infoBtn = document.createElement('button');
       infoBtn.type = 'button';
       infoBtn.className = 'lidar-pointcloud-action info';
-      infoBtn.textContent = 'Info';
-      infoBtn.title = 'Show metadata';
+      //infoBtn.textContent = 'Info';
+      infoBtn.innerHTML =  `
+      <span class="lidar-control-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" width="17" height="17"><path d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z"/></svg>
+      </span>
+    `;
+      infoBtn.title = 'Mostrar metadatos';
       infoBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this._callbacks.onShowMetadata!(pc.id);
@@ -928,16 +937,26 @@ export class PanelBuilder {
 
     const zoomBtn = document.createElement('button');
     zoomBtn.type = 'button';
-    zoomBtn.className = 'lidar-pointcloud-action';
-    zoomBtn.textContent = 'Zoom';
-    zoomBtn.title = 'Zoom to point cloud';
+    zoomBtn.className = 'lidar-pointcloud-action zoom';
+    //zoomBtn.textContent = 'Zoom';
+    zoomBtn.innerHTML =  `
+      <span class="lidar-control-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="17" height="17"><path d="M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z"/></svg>
+      </span>
+    `;
+    zoomBtn.title = 'Zoom a nube de puntos';
     zoomBtn.addEventListener('click', () => this._callbacks.onZoomTo(pc.id));
 
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
     removeBtn.className = 'lidar-pointcloud-action remove';
-    removeBtn.textContent = 'Remove';
-    removeBtn.title = 'Remove point cloud';
+    //removeBtn.textContent = 'Remove';
+      removeBtn.innerHTML =  `
+      <span class="lidar-control-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="17" height="17"><path d="M393.4 41.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L269.3 256 438.6 425.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 301.3 54.6 470.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L178.7 256 9.4 86.6C-3.1 74.1-3.1 53.9 9.4 41.4s32.8-12.5 45.3 0L224 210.7 393.4 41.4z"/></svg>
+      </span>
+    `;
+    removeBtn.title = 'Eliminar nube de puntos';
     removeBtn.addEventListener('click', (e) => {
       e.stopPropagation(); // Prevent click-outside handler from collapsing panel
       this._callbacks.onUnload(pc.id);
