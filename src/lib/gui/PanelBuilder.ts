@@ -343,7 +343,7 @@ export class PanelBuilder {
 
     // Section header
     const header = document.createElement('div');
-    header.className = 'lidar-control-section-header';
+    header.className = 'lidar-control-section-header style-section-header';
     header.textContent = 'Estilo';
     section.appendChild(header);
 
@@ -353,7 +353,7 @@ export class PanelBuilder {
 
     const colorLabel = document.createElement('label');
     colorLabel.className = 'lidar-control-label';
-    colorLabel.textContent = 'Color por';
+    colorLabel.textContent = 'Estilo';
     colorGroup.appendChild(colorLabel);
 
     const colorSelect = document.createElement('select');
@@ -1016,7 +1016,7 @@ export class PanelBuilder {
 
     const header = document.createElement('div');
     header.className = 'lidar-control-section-header lidar-section-collapsible';
-    header.innerHTML = '<span class="lidar-section-toggle">▶</span> Cross-Section';
+    header.innerHTML = '<span class="lidar-section-toggle">▶</span> Sección transversal';
     header.style.cursor = 'pointer';
 
     const body = document.createElement('div');

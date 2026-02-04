@@ -1,6 +1,6 @@
 {
   "name": "maplibre-gl-lidar-tidop",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A MapLibre GL JS plugin for visualizing LiDAR point clouds using deck.gl",
   "type": "module",
   "main": "./dist/index.cjs",
