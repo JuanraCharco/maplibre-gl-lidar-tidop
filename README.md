@@ -2,10 +2,10 @@
 
 A MapLibre GL JS plugin for visualizing LiDAR point clouds using deck.gl.
 
-[![npm version](https://img.shields.io/npm/v/maplibre-gl-lidar.svg)](https://www.npmjs.com/package/maplibre-gl-lidar)
+[![npm version](https://img.shields.io/npm/v/maplibre-gl-lidar-tidop.svg)](https://www.npmjs.com/package/maplibre-gl-lidar-tidop)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/p/github/opengeos/maplibre-gl-lidar)
-[![Open in StackBlitz](https://img.shields.io/badge/Open%20in-StackBlitz-blue?logo=stackblitz)](https://stackblitz.com/github/opengeos/maplibre-gl-lidar)
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?logo=codesandbox)](https://codesandbox.io/p/github/opengeos/maplibre-gl-lidar-tidop)
+[![Open in StackBlitz](https://img.shields.io/badge/Open%20in-StackBlitz-blue?logo=stackblitz)](https://stackblitz.com/github/opengeos/maplibre-gl-lidar-tidop)
 
 ## Features
 
@@ -27,16 +27,16 @@ A MapLibre GL JS plugin for visualizing LiDAR point clouds using deck.gl.
 
 ## Demo
 
-Try the [live demo](https://opengeos.org/maplibre-gl-lidar).
+Try the [live demo](https://opengeos.org/maplibre-gl-lidar-tidop).
 
 ![](https://github.com/user-attachments/assets/db03b60d-918d-438d-9f3f-1f922b1a0a2b)
 
 ## Online Viewer
 
-Use the [Online Viewer](https://opengeos.org/maplibre-gl-lidar/viewer/) to load and visualize any COPC point cloud by entering a URL. You can also use URL parameters for direct linking:
+Use the [Online Viewer](https://opengeos.org/maplibre-gl-lidar-tidop/viewer/) to load and visualize any COPC point cloud by entering a URL. You can also use URL parameters for direct linking:
 
 ```
-https://opengeos.org/maplibre-gl-lidar/viewer/?url=https://s3.amazonaws.com/hobu-lidar/autzen-classified.copc.laz
+https://opengeos.org/maplibre-gl-lidar-tidop/viewer/?url=https://s3.amazonaws.com/hobu-lidar/autzen-classified.copc.laz
 ```
 
 This allows you to share links that automatically load specific point clouds.

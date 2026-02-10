@@ -180,7 +180,7 @@ export class CrossSectionPanel {
     this._drawButton = document.createElement('button');
     this._drawButton.type = 'button';
     this._drawButton.className = 'lidar-control-button lidar-crosssection-draw';
-    this._drawButton.textContent = 'Dibujar línea';
+    this._drawButton.textContent = 'Draw Line';
     this._drawButton.addEventListener('click', (e) => {
       e.stopPropagation();
       this._isDrawing = !this._isDrawing;
@@ -193,7 +193,7 @@ export class CrossSectionPanel {
     this._clearButton = document.createElement('button');
     this._clearButton.type = 'button';
     this._clearButton.className = 'lidar-control-button lidar-crosssection-clear';
-    this._clearButton.textContent = 'Limpiar';
+    this._clearButton.textContent = 'Clear';
     this._clearButton.addEventListener('click', (e) => {
       e.stopPropagation();
       this._callbacks.onClear();
@@ -206,7 +206,7 @@ export class CrossSectionPanel {
     this._downloadButton.type = 'button';
     this._downloadButton.className = 'lidar-control-button secondary';
     this._downloadButton.textContent = 'CSV';
-    this._downloadButton.title = 'Descargar datos de perfil como CSV';
+    this._downloadButton.title = 'Download profile data as CSV';
     this._downloadButton.disabled = true;
     this._downloadButton.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -219,7 +219,7 @@ export class CrossSectionPanel {
     this._expandButton.type = 'button';
     this._expandButton.className = 'lidar-control-button secondary';
     this._expandButton.innerHTML = '⤢';
-    this._expandButton.title = 'Expandir gráfico en ventana emergente';
+    this._expandButton.title = 'Expand chart in popup';
     this._expandButton.disabled = true;
     this._expandButton.addEventListener('click', (e) => {
       e.stopPropagation();
